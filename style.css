@@ -1,0 +1,36 @@
+body {
+  background-color: #1b0033;
+  color: white;
+  overflow: hidden;
+  font-family: "Comic Sans MS", cursive;
+  text-align: center;
+}
+
+#gameArea {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  margin: 20px auto;
+  background: linear-gradient(to top, #330066, #000);
+  border: 3px solid orange;
+  border-radius: 10px;
+  box-shadow: 0 0 20px orange;
+}
+
+.item {
+  position: absolute;
+  font-size: 30px;
+}
+
+#basket {
+  position: absolute;
+  bottom: 10px;
+  left: 180px;
+  font-size: 40px;
+}
+
+h2 {
+  margin-top: 15px;
+  color: #ffb84d;
+  text-shadow: 2px 2px 5px #ff6600;
+}
