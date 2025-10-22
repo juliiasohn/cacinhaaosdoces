@@ -5,14 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Caça aos Doces 🎃</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/pumpkin.png">
 </head>
 <body>
 
-  <h2>🍬 Caça aos Doces 🎃</h2>
-  <p>Pontos: <span id="score">0</span> | Vidas: <span id="lives">3</span></p>
+  <!-- Tela inicial -->
+  <div id="startScreen">
+    <h1>🍭 Caça aos Doces 🎃</h1>
+    <p>Use as setas ⬅️ ➡️ para mover o cesto 🧺</p>
+    <p>🎯 Pegue os doces (🍬) e evite as abóboras (🎃)!</p>
+    <button id="startBtn">🎮 Jogar</button>
+  </div>
 
-  <div id="gameArea">
-    <div id="basket">🧺</div>
+  <!-- Tela do jogo -->
+  <div id="gameContainer" class="hidden">
+    <h2>🍬 Caça aos Doces 🎃</h2>
+    <p>Pontos: <span id="score">0</span> | Vidas: <span id="lives">3</span></p>
+    <div id="gameArea">
+      <div id="basket">🧺</div>
+    </div>
   </div>
 
   <!-- Trilha sonora e efeitos -->

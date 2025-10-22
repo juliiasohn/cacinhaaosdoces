@@ -1,5 +1,9 @@
 const gameArea = document.getElementById("gameArea");
 const basket = document.getElementById("basket");
+const startScreen = document.getElementById("startScreen");
+const startBtn = document.getElementById("startBtn");
+const gameContainer = document.getElementById("gameContainer");
+
 const bgMusic = document.getElementById("bgMusic");
 const candySound = document.getElementById("candySound");
 const pumpkinSound = document.getElementById("pumpkinSound");
@@ -8,23 +12,40 @@ const gameOverSound = document.getElementById("gameOverSound");
 let score = 0;
 let lives = 3;
 let basketX = 180;
-let gameRunning = true;
+let gameRunning = false;
+let game;
 
-// Inicia música de fundo quando o jogador pressiona uma tecla
+// movimento do cesto
 document.addEventListener("keydown", (e) => {
-  if (bgMusic.paused) bgMusic.play();
-
+  if (!gameRunning) return;
   if (e.key === "ArrowLeft" && basketX > 0) basketX -= 20;
   if (e.key === "ArrowRight" && basketX < 360) basketX += 20;
   basket.style.left = basketX + "px";
 });
+
+// início do jogo
+startBtn.addEventListener("click", startGame);
+
+function startGame() {
+  startScreen.classList.add("hidden");
+  gameContainer.classList.remove("hidden");
+  bgMusic.play();
+  score = 0;
+  lives = 3;
+  gameRunning = true;
+  document.getElementById("score").textContent = score;
+  document.getElementById("lives").textContent = lives;
+
+  game = setInterval(createItem, 700);
+  setTimeout(() => endGame(), 30000); // 30 segundos
+}
 
 function createItem() {
   if (!gameRunning) return;
 
   const item = document.createElement("div");
   item.classList.add("item");
-  const isCandy = Math.random() < 0.7; // 70% chance de ser doce
+  const isCandy = Math.random() < 0.7;
   item.textContent = isCandy ? "🍬" : "🎃";
   item.style.left = Math.random() * 370 + "px";
   item.style.top = "0px";
@@ -56,9 +77,6 @@ function createItem() {
   }, 50);
 }
 
-let game = setInterval(createItem, 700);
-setTimeout(() => endGame(), 30000);
-
 function endGame() {
   if (!gameRunning) return;
   gameRunning = false;
@@ -66,7 +84,7 @@ function endGame() {
   bgMusic.pause();
   gameOverSound.play();
   setTimeout(() => {
-    alert(`🎃 Fim de jogo! Pontuação: ${score}`);
+    alert(`🎃 Fim de jogo! Pontuação final: ${score}`);
     location.reload();
   }, 1000);
 }
